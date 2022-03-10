@@ -7,7 +7,7 @@ turtle.tracer(0,0)
 main_window = turtle.Screen()
 main_window.title("Cycle")
 main_window.bgcolor("black")
-main_window.setup(width = 1000, height = 800)
+main_window.setup(width = 1000, height = 700)
 
 #create player 1
 player1 = turtle.Turtle()
@@ -23,7 +23,7 @@ player2.color("#0000FF")
 player2.shape("square")
 player2.penup()
 player2.speed(0)
-player2.setposition(210, 0)
+player2.setposition(189, 0)
 
 #create writing bot
 writebot = turtle.Turtle()
@@ -33,7 +33,7 @@ writebot.hideturtle()
 
 #set player variables
 playerspeed = 21
-gamespeed = 0.8
+gamespeed = 1
 taillength = 10
 growth = 0.2
 playerinput1 = 'w'
@@ -47,7 +47,7 @@ def set_input(key):
     global playerinput1, playerinput2
     if key in ['w','a','s','d'] and keyid[key] + keyid[playerinput1] != 5:
         playerinput1 = key
-    elif keyid[key] + keyid[playerinput2] != 5:
+    elif key in ['i','j','k','l'] and keyid[key] + keyid[playerinput2] != 5:
         playerinput2 = key
     else:
         pass
@@ -136,15 +136,16 @@ while True:
         playerturtles2.append(playerturtle2)
     
 
-    
+
     # check for game end
     for player in [player1, player2]:
-        if ([player.xcor(),player.ycor()] in tailcoords1 or 
+        if (player1.pos() == player2.pos() or
+            [player.xcor(),player.ycor()] in tailcoords1 or 
             [player.xcor(),player.ycor()] in tailcoords2 or 
             player.xcor() < -500 or 
             player.xcor() > 500 or
-            player.ycor() < -400 or
-            player.ycor() > 400):
+            player.ycor() < -350 or
+            player.ycor() > 350):
             gameover = True
     
     #when game is over, turns cycles white and writes game over
